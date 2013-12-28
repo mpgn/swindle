@@ -102,7 +102,7 @@ if ($client->getAccessToken()) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Swindle Porject</a>
+          <a class="navbar-brand" href="#">Swindle Project</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -116,14 +116,15 @@ if ($client->getAccessToken()) {
 
     <div class="container">
 
-    	<ul class="nav nav-pills">
+    	<ul class="nav nav-pills" id="ongletsProcess">
 		  	<li class="active"><h4><span class="label label-default">Youtube Connection <span class="glyphicon glyphicon-zoom-out"></span></span></h4></li>
 		  	<li><h4><span class="label label-primary">Verify Information <span class="glyphicon glyphicon-pencil"></span></span></h4></li>
 		  	<li><h4><span class="label label-default">Welcome to Ferox <span class="glyphicon glyphicon-star"></span></span></h4></li>
 		</ul>
 
     	<?php if(!isset($_SESSION['token'])): ?>
-
+			
+		<script>activeMenu('ongletsProcess',0);</script>
 		    <!-- Main component for a primary marketing message or call to action -->
 		    <div id="home">
 			    <div class="well">
@@ -144,7 +145,7 @@ if ($client->getAccessToken()) {
 		    </div>
 
 		<?php else: ?>
-
+			<script>activeMenu('ongletsProcess',1);</script>
 			<div id="verify" style="display:block">
 			    <!-- Main component for a primary marketing message or call to action -->
 			    <div class="well">
@@ -161,7 +162,7 @@ if ($client->getAccessToken()) {
 					<?php if(round($average) > 150): ?>
 							<h3 style="text-align:center;">You can apply for a partnership  <span class="glyphicon glyphicon-ok"></span></h3>				
 							<div style="text-align:center;">
-			        			<a class="btn btn-lg btn-primary pagination-centered" role="button" onclick="displayAndHide('finally','verify');">Next Step</a>
+			        			<a class="btn btn-lg btn-primary pagination-centered" role="button" onclick="displayAndHide('finally','verify');activeMenu('ongletsProcess',2);">Next Step</a>
 			        		</div>
 					<?php else: ?>
 							<p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
@@ -198,6 +199,18 @@ if ($client->getAccessToken()) {
 	{
 		document.getElementById(display).style.display = "block";
 		document.getElementById(hide).style.display = "none";
+	}
+	
+	function activeMenu(id_ul,index)
+	{
+		var li = document.getElementById(id_ul).getElementsByTagName('li');
+		var len = li.length;
+		for(var i=0; i<len; i++) {
+			if(i == index)
+				li[i].className = 'active';
+			else
+				li[i].className = '';
+		}
 	}
 	
     </script>
