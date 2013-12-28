@@ -18,12 +18,12 @@ session_start();
 function arrayToObject($array)
 {
     // First we convert the array to a json string
-    $json = json_encode($array);
+    //$json = json_encode($array);
 
     // The we convert the json string to a stdClass()
-    $object = json_decode($json);
+    //$object = json_decode($json);
 
-    return $object;
+    return json_decode(json_encode($array));
 }
 
 $client = new Google_Client();
