@@ -122,7 +122,7 @@ if ($client->getAccessToken()) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Swindle Porject</a>
+          <a class="navbar-brand" href="#">Swindle Project</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -191,20 +191,19 @@ if ($client->getAccessToken()) {
 			    <!-- Main component for a primary marketing message or call to action -->
 			    <div class="well">
 			        <h2>Verify Information </h2>
-					<?php 
-						if(round($average) > 150)
-							echo '<h3 style="text-align:center;">You can apply for a partnership  <span class="glyphicon glyphicon-ok"></span></h3>				
-							<div style="text-align:center;">
+					<?php if(round($average) > 150): ?>
+						<h3 style="text-align:center;">You can apply for a partnership  <span class="glyphicon glyphicon-ok"></span></h3>				
+						<div style="text-align:center;">
 			        			<a class="btn btn-lg btn-primary pagination-centered" role="button">Next Step</a>
-			        		</div>';
-						else
-							echo '<p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
-									<p>We\'re sorry but your current YouTube channel is not eligible to partner with our network. You can try again with another YouTube account you feel may meet our requirements by clicking "Disconnect your account" at the bottom of this page. We hope that you will apply again in the coming months and hopefully you will be eligible then, we thank you for your interest with Ferox and good luck with your YouTube venture. </p>
-									<p>Once again we wish you all the best with your YouTube channel, and we hope to see you again soon.</p>
-								<div style="text-align:center;">
-			        				<a class="btn btn-lg btn-primary pagination-centered" disabled="disabled" role="button">Next Step</a>
-			        			</div>';
-					?>
+			        		</div>
+					<?php else: ?>
+						<p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
+								<p>We\'re sorry but your current YouTube channel is not eligible to partner with our network. You can try again with another YouTube account you feel may meet our requirements by clicking "Disconnect your account" at the bottom of this page. We hope that you will apply again in the coming months and hopefully you will be eligible then, we thank you for your interest with Ferox and good luck with your YouTube venture. </p>
+								<p>Once again we wish you all the best with your YouTube channel, and we hope to see you again soon.</p>
+							<div style="text-align:center;">
+			        			<a class="btn btn-lg btn-primary pagination-centered" disabled="disabled" role="button">Next Step</a>
+			        		</div>
+					<?php endif; ?>
 			    </div>
 		    </div>
 
