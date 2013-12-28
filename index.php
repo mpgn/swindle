@@ -131,7 +131,7 @@ if ($client->getAccessToken()) {
 		  	<li><h4><span class="label label-default">Welcome to Ferox <span class="glyphicon glyphicon-star"></span></span></h4></li>
 		</ul>
 
-    	<?php if($_SESSION['compteur'] == 1): ?>
+    	<?php if(!isset($_SESSION['token']): ?>
 
 		    <!-- Main component for a primary marketing message or call to action -->
 		    <div id="home">
@@ -152,8 +152,7 @@ if ($client->getAccessToken()) {
 			    </div>
 		    </div>
 
-		<?php endif; ?>
-		<?php if($_SESSION['compteur'] == 3):?>
+		<?php else: ?>
 
 			<div id="verify">
 			    <!-- Main component for a primary marketing message or call to action -->
@@ -168,35 +167,31 @@ if ($client->getAccessToken()) {
 						<li>Email Address : <?php echo $email; ?></li>
 						<li>Analytic Reports Average : <?php echo round($average). " views per day for one months"; ?></li>
 					</ul>
-					<?php 
-						if(round($average) > 150)
-							echo '<h3 style="text-align:center;">You can apply for a partnership  <span class="glyphicon glyphicon-ok"></span></h3>				
+					<?php if(round($average) > 150): ?>
+							<h3 style="text-align:center;">You can apply for a partnership  <span class="glyphicon glyphicon-ok"></span></h3>				
 							<div style="text-align:center;">
-			        			<a href="index.php" class="btn btn-lg btn-primary pagination-centered" role="button">Next Step</a>
-			        		</div>';
-						else
-							echo '<p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
+			        			<a href="index.php" class="btn btn-lg btn-primary pagination-centered" role="button" onclick="displayAndHide('finally','verifiy');">Next Step</a>
+			        		</div>
+					<?php else: ?>
+							<p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
 									<p>We\'re sorry but your current YouTube channel is not eligible to partner with our network. You can try again with another YouTube account you feel may meet our requirements by clicking "Disconnect your account" at the bottom of this page. We hope that you will apply again in the coming months and hopefully you will be eligible then, we thank you for your interest with Ferox and good luck with your YouTube venture. </p>
 									<p>Once again we wish you all the best with your YouTube channel, and we hope to see you again soon.</p>
 								<div style="text-align:center;">
 			        				<a class="btn btn-lg btn-primary pagination-centered" disabled="disabled" role="button">Next Step</a>
-			        			</div>';
-					?>
+			        			</div>
+					<?php endif; ?>
 			    </div>
 		    </div>
 
-		<?php endif; ?>
-		<?php if($_SESSION['compteur'] > 3):?>
 
-			<div id="finally">
+			<div id="finally" style="display:none">
 			    <!-- Main component for a primary marketing message or call to action -->
 			    <div class="well">
 			        <h2>Welcome to Ferox Network</h2>
 					 	
 			    </div>
 		    </div>
-
-		<?php unset($_SESSION['count']); endif; ?>
+		<?php endif; ?>
     </div> <!-- /container -->
 
 
@@ -207,8 +202,13 @@ if ($client->getAccessToken()) {
     <script src="../../dist/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-
-
+    
+	function displayAndHide(display, hide) 
+	{
+		document.getElementById(display).style.display = "block";
+		document.getElementById(hide).style.display = "none";
+	}
+	
     </script>
   </body>
 
