@@ -1,4 +1,5 @@
 <?php
+
 require_once 'google-api-php-client/src/Google_Client.php';
 require_once 'google-api-php-client/src/contrib/Google_YouTubeAnalyticsService.php';
 require_once 'google-api-php-client/src/contrib/Google_YouTubeService.php';
@@ -131,7 +132,7 @@ if ($client->getAccessToken()) {
 		  	<li><h4><span class="label label-default">Welcome to Ferox <span class="glyphicon glyphicon-star"></span></span></h4></li>
 		</ul>
 
-    	<?php if(!isset($_SESSION['token']): ?>
+    	<?php if(!isset($_SESSION['token'])): ?>
 
 		    <!-- Main component for a primary marketing message or call to action -->
 		    <div id="home">
@@ -213,4 +214,3 @@ if ($client->getAccessToken()) {
   </body>
 
 </html>
->>>>>>> 3332023f200fb130a7e00cbde340865f95c7239b
