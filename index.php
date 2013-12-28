@@ -19,10 +19,10 @@ $client = new Google_Client();
 $client->setApplicationName('Google+ PHP Starter Application');
 // Visit https://code.google.com/apis/console?api=plus to generate your
 // client id, client secret, and to register your redirect uri.
-$client->setClientId('51738669390-3fn163catmb90mg77gjc7nfv2daq2pu1.apps.googleusercontent.com');
-$client->setClientSecret('R9da4BTPZoli_npWbVpIUPLD');
-$client->setRedirectUri('http://localhost/swindle-api/index.php');
-$client->setDeveloperKey('AIzaSyArvWv0qpLy30RbKKLpjWXge1y8B0u5vWc');
+$client->setClientId('724850213999-ie4mskg3ddgcj1lnm8b48lf6o3k0m8m5.apps.googleusercontent.com');
+$client->setClientSecret('ElgNGcGEanXa_HOnQ590P6q5');
+$client->setRedirectUri('http://swindle.stats.yt/index.php');
+$client->setDeveloperKey('AIzaSyDouwVtFG9lCibvY4vvf_RhxCVo4-u-NK0');
 $youtube = new Google_YouTubeAnalyticsService($client);
 $service = new Google_YouTubeService($client);
 $auth2 = new Google_Oauth2Service($client);
