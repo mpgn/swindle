@@ -9,13 +9,6 @@ require_once 'google-api-php-client/src/contrib/Google_Oauth2Service.php';
 // real database or memcached.
 session_start();
 
-
-if( isset($_SESSION['compteur']) ) {
-	$_SESSION['compteur']++;
-} else {
-	$_SESSION['compteur'] = 1;
-}
-
 $client = new Google_Client();
 $client->setApplicationName('Google+ PHP Starter Application');
 // Visit https://code.google.com/apis/console?api=plus to generate your
@@ -42,7 +35,6 @@ if (isset($_SESSION['token'])) {
 
 if ($client->getAccessToken()) {
 
-	$step = 1;
 	/***************USER YOUTUBE ID********************/
 
   	$data = $service->channels->listChannels('snippet', array('mine' => 'true',));
@@ -78,8 +70,6 @@ if ($client->getAccessToken()) {
   $_SESSION['token'] = $client->getAccessToken();
 } else {
 
-
-  $step = 0;
   $authUrl = $client->createAuthUrl();
 
 }
@@ -128,7 +118,7 @@ if ($client->getAccessToken()) {
 
     	<ul class="nav nav-pills">
 		  	<li class="active"><h4><span class="label label-default">Youtube Connection <span class="glyphicon glyphicon-zoom-out"></span></span></h4></li>
-		  	<li><h4><span class="label label-default">Verify Information <span class="glyphicon glyphicon-pencil"></span></span></h4></li>
+		  	<li><h4><span class="label label-primary">Verify Information <span class="glyphicon glyphicon-pencil"></span></span></h4></li>
 		  	<li><h4><span class="label label-default">Welcome to Ferox <span class="glyphicon glyphicon-star"></span></span></h4></li>
 		</ul>
 
@@ -155,7 +145,7 @@ if ($client->getAccessToken()) {
 
 		<?php else: ?>
 
-			<div id="verify">
+			<div id="verify" style="display:block">
 			    <!-- Main component for a primary marketing message or call to action -->
 			    <div class="well">
 			        <h2>Verify Information </h2>
@@ -171,7 +161,7 @@ if ($client->getAccessToken()) {
 					<?php if(round($average) > 150): ?>
 							<h3 style="text-align:center;">You can apply for a partnership  <span class="glyphicon glyphicon-ok"></span></h3>				
 							<div style="text-align:center;">
-			        			<a href="index.php" class="btn btn-lg btn-primary pagination-centered" role="button" onclick="displayAndHide('finally','verifiy');">Next Step</a>
+			        			<a class="btn btn-lg btn-primary pagination-centered" role="button" onclick="displayAndHide('finally','verify');">Next Step</a>
 			        		</div>
 					<?php else: ?>
 							<p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
@@ -200,7 +190,7 @@ if ($client->getAccessToken()) {
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
     
