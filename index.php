@@ -8,22 +8,11 @@ require_once 'google-api-php-client/src/contrib/Google_Oauth2Service.php';
 // real database or memcached.
 session_start();
 
-/**
- * Convert an array into a stdClass()
- * 
- * @param   array   $array  The array we want to convert
- * 
- * @return  object
- */
-function arrayToObject($array)
-{
-    // First we convert the array to a json string
-    $json = json_encode($array);
 
-    // The we convert the json string to a stdClass()
-    $object = json_decode($json);
-
-    return $object;
+if( isset($_SESSION['compteur']) ) {
+	$_SESSION['compteur']++;
+} else {
+	$_SESSION['compteur'] = 1;
 }
 
 $client = new Google_Client();
@@ -52,8 +41,7 @@ if (isset($_SESSION['token'])) {
 
 if ($client->getAccessToken()) {
 
-	$html = 1;
-
+	$step = 1;
 	/***************USER YOUTUBE ID********************/
 
   	$data = $service->channels->listChannels('snippet', array('mine' => 'true',));
@@ -89,7 +77,8 @@ if ($client->getAccessToken()) {
   $_SESSION['token'] = $client->getAccessToken();
 } else {
 
-  $html = 0;
+
+  $step = 0;
   $authUrl = $client->createAuthUrl();
 
 }
@@ -138,12 +127,11 @@ if ($client->getAccessToken()) {
 
     	<ul class="nav nav-pills">
 		  	<li class="active"><h4><span class="label label-default">Youtube Connection <span class="glyphicon glyphicon-zoom-out"></span></span></h4></li>
-		  	<li><h4><span class="label label-primary">Process Channel <span class="glyphicon glyphicon-ok"></span></span></h4></li>
 		  	<li><h4><span class="label label-default">Verify Information <span class="glyphicon glyphicon-pencil"></span></span></h4></li>
 		  	<li><h4><span class="label label-default">Welcome to Ferox <span class="glyphicon glyphicon-star"></span></span></h4></li>
 		</ul>
 
-    	<?php if($html == 0): ?>
+    	<?php if($_SESSION['compteur'] == 1): ?>
 
 		    <!-- Main component for a primary marketing message or call to action -->
 		    <div id="home">
@@ -165,12 +153,14 @@ if ($client->getAccessToken()) {
 		    </div>
 
 		<?php endif; ?>
-		<?php if($html > 0): ?>
+		<?php if($_SESSION['compteur'] == 3):?>
 
-			<div id="process">
+			<div id="verify">
 			    <!-- Main component for a primary marketing message or call to action -->
 			    <div class="well">
-			        <h2>Process Channel </h2>
+			        <h2>Verify Information </h2>
+
+			        <h3>Process Channel </h3>
 			        <p>Information about your YouTube Channel :</p>
 					<ul>
 						<li>Full Name : <?php echo $firstName . " " . $lastName; ?></li>
@@ -178,24 +168,11 @@ if ($client->getAccessToken()) {
 						<li>Email Address : <?php echo $email; ?></li>
 						<li>Analytic Reports Average : <?php echo round($average). " views per day for one months"; ?></li>
 					</ul>
-					<div style="text-align:center;">
-			        	<a class="btn btn-lg btn-primary pagination-centered" role="button">Next Step</a>
-			        </div>
-			    </div>
-		    </div>
-
-		<?php endif; ?>
-		<?php if($html > 0): ?>
-
-			<div id="verify" style="display:none">
-			    <!-- Main component for a primary marketing message or call to action -->
-			    <div class="well">
-			        <h2>Verify Information </h2>
 					<?php 
 						if(round($average) > 150)
 							echo '<h3 style="text-align:center;">You can apply for a partnership  <span class="glyphicon glyphicon-ok"></span></h3>				
 							<div style="text-align:center;">
-			        			<a class="btn btn-lg btn-primary pagination-centered" role="button">Next Step</a>
+			        			<a href="index.php" class="btn btn-lg btn-primary pagination-centered" role="button">Next Step</a>
 			        		</div>';
 						else
 							echo '<p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
@@ -209,6 +186,17 @@ if ($client->getAccessToken()) {
 		    </div>
 
 		<?php endif; ?>
+		<?php if($_SESSION['compteur'] > 3):?>
+
+			<div id="finally">
+			    <!-- Main component for a primary marketing message or call to action -->
+			    <div class="well">
+			        <h2>Welcome to Ferox Network</h2>
+					 	
+			    </div>
+		    </div>
+
+		<?php unset($_SESSION['count']); endif; ?>
     </div> <!-- /container -->
 
 
