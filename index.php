@@ -11,12 +11,18 @@ session_start();
 
 $client = new Google_Client();
 $client->setApplicationName('Google+ PHP Starter Application');
+
 // Visit https://code.google.com/apis/console?api=plus to generate your
 // client id, client secret, and to register your redirect uri.
+#------------------------[ INSERT YOUR INFORMATION FORM GOOGLE CONSOLE ]------------------------------
+
 $client->setClientId('724850213999-ie4mskg3ddgcj1lnm8b48lf6o3k0m8m5.apps.googleusercontent.com');
 $client->setClientSecret('ElgNGcGEanXa_HOnQ590P6q5');
 $client->setRedirectUri('http://swindle.stats.yt/index.php');
 $client->setDeveloperKey('AIzaSyDouwVtFG9lCibvY4vvf_RhxCVo4-u-NK0');
+
+#------------------------[ INSERT YOUR INFORMATION FORM GOOGLE CONSOLE ]------------------------------
+
 $youtube = new Google_YouTubeAnalyticsService($client);
 $service = new Google_YouTubeService($client);
 $auth2 = new Google_Oauth2Service($client);
@@ -59,10 +65,12 @@ if ($client->getAccessToken()) {
   	$activities = $youtube->reports->query('channel=='.$idde.'', $datePast , $today, 'views', array('dimensions' => 'day'));
   
 	$average = 0;
-  	foreach ($activities['rows'] as $value) {
-  		$average += $value[1];
-  	}
-  	$average = $average/count($activities['rows']);
+	if(isset($activities['rows'])){
+	  	foreach ($activities['rows'] as $value) {
+	  		$average += $value[1];
+		}	
+		$average = $average/count($activities['rows']);
+	}
 
 
   	/***************USER STATS********************/
@@ -82,6 +90,7 @@ if ($client->getAccessToken()) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="icon" type="image/png" href="logo.png" />
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,29 +111,39 @@ if ($client->getAccessToken()) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Swindle Project</a>
+          <a class="navbar-brand" href="#"> Swindle-API <span class="glyphicon glyphicon-send"></span> </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
+            <li class="active"><a>Home</a></li>
+            <li><a href="about.php">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
     <div class="container">
 
-    	<ul class="nav nav-pills" id="ongletsProcess">
-		  	<li class="active"><h4><span class="label label-default">Youtube Connection <span class="glyphicon glyphicon-zoom-out"></span></span></h4></li>
-		  	<li><h4><span class="label label-primary">Verify Information <span class="glyphicon glyphicon-pencil"></span></span></h4></li>
-		  	<li><h4><span class="label label-default">Welcome to Ferox <span class="glyphicon glyphicon-star"></span></span></h4></li>
-		</ul>
+<!--     	<ul class="nav nav-pills" id="ongletsProcess">
+		  	<li class="active"><a>Youtube Connection <span class="glyphicon glyphicon-zoom-out"></a></span></li>
+		  	<li><a>Verify Information <span class="glyphicon glyphicon-pencil"></span></a></li>
+		  	<li><a>Welcome to Ferox <span class="glyphicon glyphicon-star"></span></a></li>
+		</ul> -->
+
+			<div class="progress">
+			  	<div class="progress_1 progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
+			    Youtube Connection <span class="glyphicon glyphicon-zoom-out">
+				</div>
+			<div class="progress_2 progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
+				Verify Information <span class="glyphicon glyphicon-pencil"></span>
+			</div>
+			<div class="progress_3 progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+    			Welcome to Ferox <span class="glyphicon glyphicon-star"></span>
+  			</div>
+		</div>
 
     	<?php if(!isset($_SESSION['token'])): ?>
-			
-		<script>activeMenu('ongletsProcess',0);</script>
 		    <!-- Main component for a primary marketing message or call to action -->
 		    <div id="home">
 			    <div class="well">
@@ -139,20 +158,24 @@ if ($client->getAccessToken()) {
 						<li>Analytic Reports</li>
 					</ul>
 					<div style="text-align:center;">
-			        	<a href="<?php echo $authUrl; ?>" class="btn btn-lg btn-primary pagination-centered" role="button">Connect to YouTube</a>
+			        	<a href="<?php echo $authUrl; ?>" class="btn btn-lg btn-info pagination-centered" role="button">Connect to YouTube <span class="glyphicon glyphicon-log-in"></span></a>
 			        </div>
 			    </div>
 		    </div>
 
 		<?php else: ?>
-			<script>activeMenu('ongletsProcess',1);</script>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('.progress_2').removeClass("progress-bar-success");
+					$('.progress_2').addClass("progress-bar-info");
+				});
+
+			</script>
 			<div id="verify" style="display:block">
 			    <!-- Main component for a primary marketing message or call to action -->
 			    <div class="well">
 			        <h2>Verify Information </h2>
-
-			        <h3>Process Channel </h3>
-			        <p>Information about your YouTube Channel :</p>
+			        <p>Informations about your YouTube Channel :</p>
 					<ul>
 						<li>Full Name : <?php echo $firstName . " " . $lastName; ?></li>
 						<li>Username : <?php echo $channelName; ?></li>
@@ -160,16 +183,23 @@ if ($client->getAccessToken()) {
 						<li>Analytic Reports Average : <?php echo round($average). " views per day for one months"; ?></li>
 					</ul>
 					<?php if(round($average) > 150): ?>
-							<h3 style="text-align:center;">You can apply for a partnership  <span class="glyphicon glyphicon-ok"></span></h3>				
+							<hr>
+							<h3 style="text-align:center; color:green">Congratulation ! </h3>
+							<p>
+						    	Constituendi autem sunt qui sint in amicitia fines et quasi termini diligendi. De quibus tres video sententias ferri, quarum nullam probo, unam, ut eodem modo erga amicum adfecti simus, quo erga nosmet ipsos, alteram, ut nostra in amicos benevolentia illorum erga nos benevolentiae pariter aequaliterque respondeat, tertiam, ut, quanti quisque se ipse facit, tanti fiat ab amicis.
+							</p>	
+							<hr>			
 							<div style="text-align:center;">
-			        			<a class="btn btn-lg btn-primary pagination-centered" role="button" onclick="displayAndHide('finally','verify');activeMenu('ongletsProcess',2);">Next Step</a>
+								<a class="change btn btn-lg btn-info pagination-centered" role="button" onclick="displayAndHide('finally','verify');">Apply <span class="glyphicon glyphicon-send"></span></a>
 			        		</div>
 					<?php else: ?>
+							<hr>
 							<p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
 									<p>We\'re sorry but your current YouTube channel is not eligible to partner with our network. You can try again with another YouTube account you feel may meet our requirements by clicking "Disconnect your account" at the bottom of this page. We hope that you will apply again in the coming months and hopefully you will be eligible then, we thank you for your interest with Ferox and good luck with your YouTube venture. </p>
 									<p>Once again we wish you all the best with your YouTube channel, and we hope to see you again soon.</p>
+							<hr>
 								<div style="text-align:center;">
-			        				<a class="btn btn-lg btn-primary pagination-centered" disabled="disabled" role="button">Next Step</a>
+			        				<a class="btn btn-lg btn-info pagination-centered" disabled="disabled" role="button">Apply</a>
 			        			</div>
 					<?php endif; ?>
 			    </div>
@@ -180,17 +210,28 @@ if ($client->getAccessToken()) {
 			    <!-- Main component for a primary marketing message or call to action -->
 			    <div class="well">
 			        <h2>Welcome to Ferox Network</h2>
+
+			        <p>
+			        	Constituendi autem sunt qui sint in amicitia fines et quasi termini diligendi. De quibus tres video sententias ferri, quarum nullam probo, unam, ut eodem modo erga amicum adfecti simus, quo erga nosmet ipsos, alteram, ut nostra in amicos benevolentia illorum erga nos benevolentiae pariter aequaliterque respondeat, tertiam, ut, quanti quisque se ipse facit, tanti fiat ab amicis.
+			        </p>
+			        <p>
+			        	Constituendi autem sunt qui sint in amicitia fines et quasi termini diligendi. De quibus tres video sententias ferri, quarum nullam probo, unam, ut eodem modo erga amicum adfecti simus, quo erga nosmet ipsos, alteram, ut nostra in amicos benevolentia illorum erga nos benevolentiae pariter aequaliterque respondeat, tertiam, ut, quanti quisque se ipse facit, tanti fiat ab amicis.
+			        </p>			        
 					 	
 			    </div>
 		    </div>
 		<?php endif; ?>
+
+		<a href="deco.php" class="btn btn-default pull-left" role="button">Disconnect YouTube</a>
+
+		<p class="text-right"><b>&copy; Team Swindle <span class="glyphicon glyphicon-send"></span> 2013</b></p>
     </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
     <script src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
@@ -201,19 +242,18 @@ if ($client->getAccessToken()) {
 		document.getElementById(hide).style.display = "none";
 	}
 	
-	function activeMenu(id_ul,index)
-	{
-		var li = document.getElementById(id_ul).getElementsByTagName('li');
-		var len = li.length;
-		for(var i=0; i<len; i++) {
-			if(i == index)
-				li[i].className = 'active';
-			else
-				li[i].className = '';
-		}
-	}
-	
     </script>
+
+    <script type="text/javascript">
+	    $(document).ready(function() {
+
+			$( ".change" ).click(function() {
+			  $('.progress_3').removeClass("progress-bar-success");
+			    $('.progress_3').addClass("progress-bar-info");
+			});
+
+		});
+   	</script>
   </body>
 
 </html>
