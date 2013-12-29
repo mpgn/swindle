@@ -47,7 +47,19 @@
         <div class="alert alert-danger" style="background-color:white">
 
           <p style='font-size: 18px;'><span class="glyphicon glyphicon-warning-sign" style='font-size: 30px'></span><span style="color:black">&nbsp Using this application, requires creating your own application on <a href="https://cloud.google.com/console#/project">Google console</a> 
-          , You also need to generate your client id, client secret, and to register your redirect uri - <small><a href="https://developers.google.com/console/help/new/"> more informations</a></small></span>
+          , You also need to generate your client id, client secret, and to register your redirect uri. - <small><a href="https://developers.google.com/console/help/new/"> more informations</a></small>. Place this information in the file <code>api.php</code></span>
+          </p>
+
+          <p>
+          <br>
+            <code>
+              ...<br>
+              $client->setClientId('client_id');<br>
+              $client->setClientSecret('client_secret');<br>
+              $client->setRedirectUri('redirect_uri');<br>
+              $client->setDeveloperKey('developer_key');<br>
+              ...<br>
+            </code>
           </p>
         </div >
 
