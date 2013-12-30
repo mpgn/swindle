@@ -1,31 +1,38 @@
 <?php
+	session_start();
 	function dbConnexion()
 	{
-		return new PDO('mysql:host=localhost;dbname=swindle','root','superCaca123');
+		return new PDO('mysql:host=localhost;dbname=swindle',/*user*/,/*pass*/);
 	}
 
-	extract($_POST);
+	$skype = isset($_POST['skype']) ? $_POST['skype'] : 0;
+	$username = isset($_SESSION['username']) ? $_SESSION['username'] : 0;
+	$fullname = isset($_SESSION['fullname']) ? $_SESSION['fullname'] : 0;
+	$email = isset($_SESSION['email']) ? $_SESSION['email'] : 0;
+	$stats = isset($_SESSION['stats']) ?$_SESSION['stats'] : 0;
 
-	if(isset($skype) && !empty($skype)){
+	if(!empty($skype) && !empty($username) && !empty($fullname) && !empty($email) && !empty($stats)){
 		$DB = dbConnexion();
+		$querySearch = 'SELECT count(*) FROM swindle WHERE email = :email';
+		$queryInsert = 'INSERT INTO swindle (username, fullname, email, skype, stats)
+				VALUES (?, ?, ?, ?, ?)';
 		
 		try
 		{
-			$req = $DB->query('SELECT count(*)
-								FROM swindle
-								WHERE email="'.$email.'"');
-			$v = $req->fetch();
+			$search = $DB->prepare($querySearch);
+			$search->execute(array(':email' => $email));
+			$v = $search->fetch();
 			if($v[0] == 0){
-				$DB->exec('INSERT INTO swindle (username, fullname, email, skype, stats) 
-					   VALUES ("'.$username.'", "'.$fullname.'", "'.$email.'", "'.$skype.'",'.$stats.')');
+				$insert = $DB->prepare($queryInsert);
+				$insert->execute(array($username,$fullname,$email,$skype,$stats));
 			}
 		} 				
 		catch(PDOException $e)
 		{
-	  		echo $e->getMessage();
+	  		echo "Error, pdoException.";
 		}
 		echo "ok";
 	}
 	else
-		echo "Error, empty fields."
+		echo "Error, empty fields.";
 ?>

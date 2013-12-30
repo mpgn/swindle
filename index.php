@@ -17,7 +17,6 @@
 	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 
@@ -115,12 +114,12 @@
 			        <h2>Verify Information </h2>
 			        <p>Information about your YouTube Channel :</p>
 					<ul>
-						<li>Full Name : <?php echo $firstName . " " . $lastName; ?></li>
-						<li>Username : <?php echo $channelName; ?></li>
-						<li>Email Address : <?php echo $email; ?></li>
-						<li>Analytic Reports Average : <?php echo round($average). " views per day for"; ?></li>
+						<li>Full Name : <?php echo $_SESSION['username'] = $firstName . " " . $lastName; ?></li>
+						<li>Username : <?php echo $_SESSION['fullname'] = $channelName; ?></li>
+						<li>Email Address : <?php echo $_SESSION['email'] = $email; ?></li>
+						<li>Analytic Reports Average : <?php $_SESSION['stats'] = round($average); echo round($average). " views per day for"; ?></li>
 					</ul>
-					<?php if(round($average) == 100): ?>
+					<?php if(round($average) >= 100): ?>
 							<hr>
 							<h3 style="text-align:center; color:green">Congratulation ! </h3>
 							<p>
@@ -128,13 +127,6 @@
 							</p>	
 							<hr>	
 							<form method="post" action="#" id="forminfo">
-								<input type="text" name="fullname" value="<?php echo $firstName . " " . $lastName; ?>" style="display:none">
-								<input type="text" name="username" value="<?php echo $channelName; ?>" style="display:none">
-								<input type="text" name="email" value="<?php echo $email; ?>" style="display:none">
-								<input type="text" name="stats" value="<?php echo round($average); ?>" style="display:none">
-
-								
-
 								<p style="margin-left: 35%"><span style="color:red">Your skype : </span><input type="text" name="skype"/><p>
 								<div style="text-align:center">
 									<button type="submit" class="change btn btn-lg btn-info">
