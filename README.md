@@ -22,4 +22,13 @@ Application Swindle-API created by [@martialdidit](https://github.com/martialdid
 
 ***
 
+You also need to create a database. Run the script `swindle.sql` to install her.
+Enter informations in the file `adduser.php`
+```
+	$host = "your_host";
+	$dbname = "db_name";
+	$user = "user";
+	$password = "your_pass";
+```
+
 Hope this application help you in your project ! - Team Swindle 

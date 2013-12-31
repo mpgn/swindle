@@ -27,10 +27,10 @@ $client->setApplicationName('Google+ PHP Starter Application');
 */
 #------------------------[ INSERT YOUR INFORMATION FORM GOOGLE CONSOLE ]------------------------------
 
-$client->setClientId('client_id');
-$client->setClientSecret('client_secret');
-$client->setRedirectUri('redirect_uri');
-$client->setDeveloperKey('developer_key');
+  $client->setClientId('client_id');
+  $client->setClientSecret('client_secret');
+  $client->setRedirectUri('redirect_uri');
+  $client->setDeveloperKey('developer_key');
 
 #------------------------[ INSERT YOUR INFORMATION FORM GOOGLE CONSOLE ]------------------------------
 
@@ -54,18 +54,25 @@ if ($client->getAccessToken()) {
 
 	/***************USER YOUTUBE ID********************/
 
-  	$data = $service->channels->listChannels('snippet', array('mine' => 'true',));
-  	$idde = $data['items'][0]['id'];
+	try {
+  		$data = $service->channels->listChannels('snippet', array('mine' => 'true',));
+  		$idde = $data['items'][0]['id'];
+  	}
+  	catch(Google_ServiceException $e)
+  	{
+  		$idde = 0;
+  	}
 
   	/***************USER YOUTUBE ID********************/
 
   	/***************USER INFO********************/
-	$userauth = $auth2->userinfo->get();
 
+	$userauth = $auth2->userinfo->get();
 	$channelName = $userauth['name'];
 	$firstName = $userauth['given_name'];
 	$lastName = $userauth['family_name'];
 	$email = $userauth['email'];
+
 
 	/***************USER INFO********************/
 
@@ -73,7 +80,13 @@ if ($client->getAccessToken()) {
 	/***************USER STATS********************/
 	$today = date("Y-m-d");
 	$datePast = date('Y-m-d', strtotime("-1 month"));
-  	$activities = $youtube->reports->query('channel=='.$idde.'', $datePast , $today, 'views', array('dimensions' => 'day'));
+	try {
+  		$activities = $youtube->reports->query('channel=='.$idde.'', $datePast , $today, 'views', array('dimensions' => 'day'));
+  	}
+  	catch(Google_ServiceException $e)
+  	{
+
+  	}
   
 	$average = 0;
 	if(isset($activities['rows'])){

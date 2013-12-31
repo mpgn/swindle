@@ -1,5 +1,14 @@
 <?php
 	require_once 'api.php';
+
+	function email($email)
+	{
+		if(!strpos($email, '@pages.plusgoogle.com')){
+		 	$_SESSION['email'] = $email;
+		 	return 1;
+		}
+		return 0;
+	}
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +18,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="icon" type="image/png" href="logo.png" />
+	<link rel="icon" type="image/png" href="img/logo.png" />
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -21,12 +30,9 @@
 		$(function(){
 
 			$("#forminfo").submit(function(){
-				username = $(this).find("input[name=username]").val();
-				fullname = $(this).find("input[name=fullname]").val();
 				email = $(this).find("input[name=email]").val();
-				stats = $(this).find("input[name=stats]").val();
 				skype = $(this).find("input[name=skype]").val();
-				$.post("adduser.php", {username: username, fullname: fullname, email: email, stats: stats, skype: skype}, function(data) {	
+				$.post("adduser.php", {email: email, skype: skype}, function(data) {	
 					if(data != "ok"){
 						$(".erreur").show();
 						$(".erreur").empty().append(data);
@@ -60,7 +66,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a>Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="about.php">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -116,10 +122,10 @@
 					<ul>
 						<li>Full Name : <?php echo $_SESSION['username'] = $firstName . " " . $lastName; ?></li>
 						<li>Username : <?php echo $_SESSION['fullname'] = $channelName; ?></li>
-						<li>Email Address : <?php echo $_SESSION['email'] = $email; ?></li>
+						<li>Email Address : <?php echo $email; ?> </li>
 						<li>Analytic Reports Average : <?php $_SESSION['stats'] = round($average); echo round($average). " views per day for"; ?></li>
 					</ul>
-					<?php if(round($average) >= 100): ?>
+					<?php if(round($average) >= 0): ?>
 							<hr>
 							<h3 style="text-align:center; color:green">Congratulation ! </h3>
 							<p>
@@ -127,6 +133,10 @@
 							</p>	
 							<hr>	
 							<form method="post" action="#" id="forminfo">
+								<?php 
+									if(!email($email))
+										echo "<p style='margin-left: 14.5%''><span style='color:red'>Your email seems to be wrong, enter new email : </span><input type='text' name='email'/><p>";
+								?>
 								<p style="margin-left: 35%"><span style="color:red">Your skype : </span><input type="text" name="skype"/><p>
 								<div style="text-align:center">
 									<button type="submit" class="change btn btn-lg btn-info">

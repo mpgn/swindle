@@ -61,7 +61,16 @@
               ...<br>
             </code>
           </p>
-        </div >
+        
+        <p style='font-size: 18px;'><span style="color:black">You also need to create a database. Run the script <b>swindle.sql</b> to install her. Enter informations in the file <b>adduser.php</b></span></p>
+        <code>
+          ...<br>
+          $host = "yout_host";<br>
+          $dbname = "db_name";<br>
+          $user = "user";<br>
+          $password = "your_pass";<br>
+        </code>
+        </div>
 
       <p>Hope this application help you in your project ! <small style="color:grey"> - Team Swindle </small></map></p>
       </div>
