@@ -25,29 +25,6 @@
 	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
-
-			$("#forminfo").submit(function(){
-				email = $(this).find("input[name=email]").val();
-				skype = $(this).find("input[name=skype]").val();
-				$.post("adduser.php", {email: email, skype: skype}, function(data) {	
-					if(data != "ok"){
-						$(".erreur").show();
-						$(".erreur").empty().append(data);
-					}
-					else
-					{
-						$("#verify").hide();
-						$("#finally").show();
-					}
-
-				});
-				return false;
-			});
-		});
-	</script>
   </head>
 <body>
 	
@@ -106,13 +83,6 @@
 		    </div>
 
 		<?php else: ?>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$('.progress_2').removeClass("progress-bar-success");
-					$('.progress_2').addClass("progress-bar-info");
-				});
-
-			</script>
 			<div id="verify">
 			    <!-- Main component for a primary marketing message or call to action -->
 			    <div class="well">
@@ -188,8 +158,38 @@
     <!-- Placed at the end of the document so the pages load faster -->
     
     <script src="js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			$("#forminfo").submit(function(){
+				email = $(this).find("input[name=email]").val();
+				skype = $(this).find("input[name=skype]").val();
+				$.post("adduser.php", {email: email, skype: skype}, function(data) {	
+					if(data != "ok"){
+						$(".erreur").show();
+						$(".erreur").empty().append(data);
+					}
+					else
+					{
+						$("#verify").hide();
+						$("#finally").show();
+					}
+
+				});
+				return false;
+			});
+		});
+	</script>
     <script type="text/javascript">
 	    $(document).ready(function() {
+
+	    	if($("#verify").is(":visible"))
+	    	{
+	    		$('.progress_2').removeClass("progress-bar-success");
+				$('.progress_2').addClass("progress-bar-info");
+	    	}
+
 
 			$( ".change" ).click(function() {
 			  $('.progress_3').removeClass("progress-bar-success");
@@ -197,7 +197,7 @@
 			});
 
 		});
-   	</script>
+   </script>
   </body>
 
 </html>
