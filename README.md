@@ -5,6 +5,8 @@ Application Swindle-API created by [@martialdidit](https://github.com/martialdid
 
   + Follow this application on <a href="https://github.com/martialdidit/swindle-api">Github</a>. </p></li>
   + For any help, creat your own issue on <a href="https://github.com/martialdidit/swindle-api/issues">Swindle-api Issues</a></p></li>
+  
+![swindle-API](http://gyazo.com/ee745be6fee436f9aa39ab400b4cab57.png "Application Swindle-API")
 
 ***
 
@@ -32,3 +34,6 @@ Enter informations in the file `adduser.php`
 ```
 
 Hope this application help you in your project ! - Team Swindle 
+
+![swindle-API CreativeCommons](http://gyazo.com/a9efb23fd897ffb6cc35bbadf2c0655b.png "Application Swindle-API  Creative Commons")
+
