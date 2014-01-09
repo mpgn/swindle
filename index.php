@@ -150,9 +150,6 @@
 		<a href="deco.php" class="btn btn-default pull-left" role="button">Disconnect YouTube</a>
 
 		<p class="text-right"><b>&copy; Team Swindle <span class="glyphicon glyphicon-send"></span> 2013</b></p>
-		<div style="text-align:center; margin-top:50px">
-        		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Swindle-API</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://swindle.stats.yt" property="cc:attributionName" rel="cc:attributionURL">http://swindle.stats.yt</a> est mis à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
-      		</div>
     </div> <!-- /container -->
 
 

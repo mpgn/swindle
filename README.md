@@ -11,11 +11,9 @@ Application Swindle-API created by [@martialdidit](https://github.com/martialdid
 ***
 
 /!\ Using this application, requires creating your own application on [Google console](https://cloud.google.com/console#/project) 
-  , You also need to generate your client id, client secret, and to register your redirect uri. - [more informations](https://developers.google.com/console/help/new/) more informations. Place this information in the file `api.php`
+  , You also need to generate your client id, client secret, and to register your redirect uri. - [more informations](https://developers.google.com/console/help/new/) more informations. Place this information in the file `inc.config.php`
 
-  
-
-    
+     
       $client->setClientId('client_id');
       $client->setClientSecret('client_secret');
       $client->setRedirectUri('redirect_uri');
@@ -25,7 +23,7 @@ Application Swindle-API created by [@martialdidit](https://github.com/martialdid
 ***
 
 You also need to create a database. Run the script `swindle.sql` to install her.
-Enter informations in the file `adduser.php`
+Enter informations in the file `inc.config.php`
 ```
 	$host = "your_host";
 	$dbname = "db_name";
@@ -35,5 +33,5 @@ Enter informations in the file `adduser.php`
 
 Hope this application help you in your project ! - Team Swindle 
 
-![swindle-API CreativeCommons](http://gyazo.com/a9efb23fd897ffb6cc35bbadf2c0655b.png "Application Swindle-API  Creative Commons")
+[swindle-API Licence MIT](http://opensource.org/licenses/MIT)
 
