@@ -1,14 +1,6 @@
 <?php
 
-/**
-* 
-
-  Using this application, requires creating your own application on https://cloud.google.com/console#/project
-  You also need to generate your client id, client secret, and to register your redirect uri - more informations :
-  https://developers.google.com/console/help/new/
-
-*/
-
+require_once 'inc.config.php';
 require_once 'google-api-php-client/src/Google_Client.php';
 require_once 'google-api-php-client/src/contrib/Google_YouTubeAnalyticsService.php';
 require_once 'google-api-php-client/src/contrib/Google_YouTubeService.php';
@@ -21,18 +13,10 @@ session_start();
 $client = new Google_Client();
 $client->setApplicationName('Google+ PHP Starter Application');
 
-/**
- Visit https://code.google.com/apis/console?api=plus to generate your
- client id, client secret, and to register your redirect uri.
-*/
-#------------------------[ INSERT YOUR INFORMATION FORM GOOGLE CONSOLE ]------------------------------
-
-  $client->setClientId('client_id');
-  $client->setClientSecret('client_secret');
-  $client->setRedirectUri('redirect_uri');
-  $client->setDeveloperKey('developer_key');
-
-#------------------------[ INSERT YOUR INFORMATION FORM GOOGLE CONSOLE ]------------------------------
+$client->setClientId($ClientId);
+$client->setClientSecret($ClientSecret);
+$client->setRedirectUri($RedirectUri);
+$client->setDeveloperKey($DeveloperKey);
 
 $youtube = new Google_YouTubeAnalyticsService($client);
 $service = new Google_YouTubeService($client);

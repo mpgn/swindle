@@ -1,9 +1,6 @@
 <?php
+	require_once 'inc.config.php';
 	session_start();
-	$host = "host";
-	$dbname = "dbname";
-	$user = "user";
-	$password = "password";
 
 	function dbConnexion($host,$dbname,$user,$password)
 	{

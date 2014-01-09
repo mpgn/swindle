@@ -47,37 +47,35 @@
         <div class="alert alert-danger" style="background-color:white">
 
           <p style='font-size: 18px;'><span class="glyphicon glyphicon-warning-sign" style='font-size: 30px'></span><span style="color:black">&nbsp Using this application, requires creating your own application on <a href="https://cloud.google.com/console#/project">Google console</a> 
-          , You also need to generate your client id, client secret, and to register your redirect uri. - <small><a href="https://developers.google.com/console/help/new/"> more informations</a></small>. Place this information in the file <code>api.php</code></span>
+          , You also need to generate your client id, client secret, and to register your redirect uri. - <small><a href="https://developers.google.com/console/help/new/"> more informations</a></small>. 
+          Place this information in the file <code>inc.config.php</code></span>
           </p>
 
           <p>
-          <br>
-            <code>
-              ...<br>
+            <code style="color:black">
+              <br>
               $client->setClientId('client_id');<br>
               $client->setClientSecret('client_secret');<br>
               $client->setRedirectUri('redirect_uri');<br>
               $client->setDeveloperKey('developer_key');<br>
-              ...<br>
+              <br>
             </code>
           </p>
-        
-        <p style='font-size: 18px;'><span style="color:black">You also need to create a database. Run the script <b>swindle.sql</b> to install her. Enter informations in the file <b>adduser.php</b></span></p>
-        <code>
-          ...<br>
-          $host = "yout_host";<br>
-          $dbname = "db_name";<br>
-          $user = "user";<br>
-          $password = "your_pass";<br>
-        </code>
-        </div>
+
+          <p style="color:black; font-size: 18px;">You also need to create a database. Run the script <code>swindle.sql</code> to install her. Enter informations in the file <code>adduser.php </code></p>
+            <code style="color:black">
+                <br>
+                $host = "your_host";<br>
+                $dbname = "db_name";<br>
+                $user = "user";<br>
+                $password = "your_pass";<br>
+                <br>
+            </code>
+        </div >
 
       <p>Hope this application help you in your project ! <small style="color:grey"> - Team Swindle </small></map></p>
       </div>
       <p class="text-right"><b>&copy; Team Swindle <span class="glyphicon glyphicon-send"></span> 2013</b></p>
-      		<div style="text-align:center; margin-top:50px">
-        	<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Swindle-API</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://swindle.stats.yt" property="cc:attributionName" rel="cc:attributionURL">http://swindle.stats.yt</a> est mis à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
-      	</div>
     </div>
 
   </body>
