@@ -36,52 +36,42 @@ if (isset($_SESSION['token'])) {
 
 if ($client->getAccessToken()) {
 
-	/***************USER YOUTUBE ID********************/
+    /***************USER YOUTUBE ID********************/
 
-	try {
-  		$data = $service->channels->listChannels('snippet', array('mine' => 'true',));
-  		$idde = $data['items'][0]['id'];
-  	}
-  	catch(Google_ServiceException $e)
-  	{
-  		$idde = 0;
-  	}
+    try {
+        $data = $service->channels->listChannels('snippet', array('mine' => 'true',));
+        $idde = $data['items'][0]['id'];
+    } catch(Google_ServiceException $e) {
+        $idde = 0;
+    }
 
-  	/***************USER YOUTUBE ID********************/
+    /***************USER INFO********************/
 
-  	/***************USER INFO********************/
+    $userauth = $auth2->userinfo->get();
+    $channelName = $userauth['name'];
+    $firstName = $userauth['given_name'];
+    $lastName = $userauth['family_name'];
+    $email = $userauth['email'];
 
-	$userauth = $auth2->userinfo->get();
-	$channelName = $userauth['name'];
-	$firstName = $userauth['given_name'];
-	$lastName = $userauth['family_name'];
-	$email = $userauth['email'];
+    /***************USER STATS********************/
+    $today = date("Y-m-d");
+    $datePast = date('Y-m-d', strtotime("-1 month"));
+    try {
+        $activities = $youtube->reports->query('channel=='.$idde.'', $datePast , $today, 'views', array('dimensions' => 'day'));
+    } catch(Google_ServiceException $e) {
 
-
-	/***************USER INFO********************/
-
-
-	/***************USER STATS********************/
-	$today = date("Y-m-d");
-	$datePast = date('Y-m-d', strtotime("-1 month"));
-	try {
-  		$activities = $youtube->reports->query('channel=='.$idde.'', $datePast , $today, 'views', array('dimensions' => 'day'));
-  	}
-  	catch(Google_ServiceException $e)
-  	{
-
-  	}
+    }
   
-	$average = 0;
-	if(isset($activities['rows'])){
-	  	foreach ($activities['rows'] as $value) {
-	  		$average += $value[1];
-		}	
-		$average = $average/count($activities['rows']);
-	}
+    $average = 0;
+    if(isset($activities['rows'])) {
+        foreach ($activities['rows'] as $value) {
+            $average += $value[1];
+        }   
+        $average = $average/count($activities['rows']);
+    }
 
 
-  	/***************USER STATS********************/
+    /***************USER STATS********************/
 
   $_SESSION['token'] = $client->getAccessToken();
 } else {
@@ -89,6 +79,3 @@ if ($client->getAccessToken()) {
   $authUrl = $client->createAuthUrl();
 
 }
-
-
-?>
