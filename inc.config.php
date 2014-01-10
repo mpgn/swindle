@@ -17,3 +17,11 @@ $host = "host";
 $dbname = "dbname";
 $user = "user";
 $password = "password";
+
+#------------------------[ INSERT CONDITION TO ENTER IN THE NETWORK ]------------------------------
+
+//type NULL if you don't want one of this :
+$nbView = 100;
+$nbSubscriber = 10; 
+$nbVideo = 100;
+$period = 30; //days

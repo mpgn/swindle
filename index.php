@@ -1,4 +1,5 @@
 <?php
+    require_once 'inc.config.php';
     require_once 'api.php';
 ?>
 
@@ -84,9 +85,9 @@
                         <li>Full Name : <?php echo $_SESSION['username'] = $firstName . " " . $lastName; ?></li>
                         <li>Username : <?php echo $_SESSION['fullname'] = $channelName; ?></li>
                         <li>Email Address : <?php echo $email; ?> </li>
-                        <li>Analytic Reports Average : <?php $_SESSION['stats'] = round($average); echo round($average). " views per day for"; ?></li>
+                        <li>Analytic Reports Average : <?php $_SESSION['stats'] = round($average); echo round($average). " views per day"; ?></li>
                     </ul>
-                    <?php if(round($average) >= 0): ?>
+                    <?php if(round($average) >= $nbView && $nbVideoCount >= $nbVideo && $nbSubscriberCount >= $nbSubscriber): ?>
                             <hr>
                             <h3 style="text-align:center; color:green">Congratulation ! </h3>
                             <p>

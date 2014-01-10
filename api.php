@@ -39,10 +39,14 @@ if ($client->getAccessToken()) {
     /***************USER YOUTUBE ID********************/
 
     try {
-        $data = $service->channels->listChannels('snippet', array('mine' => 'true',));
+        $data = $service->channels->listChannels('statistics', array('mine' => 'true',));
         $idde = $data['items'][0]['id'];
+        $nbVideoCount = $data['items'][0]['statistics']['videoCount'];
+        $nbSubscriberCount = $data['items'][0]['statistics']['subscriberCount'];
     } catch(Google_ServiceException $e) {
         $idde = 0;
+        $nbVideoCount = 0;
+        $nbSubscriberCount = 0;
     }
 
     /***************USER INFO********************/
@@ -55,19 +59,19 @@ if ($client->getAccessToken()) {
 
     /***************USER STATS********************/
     $today = date("Y-m-d");
-    $datePast = date('Y-m-d', strtotime("-1 month"));
+    $datePast = date('Y-m-d', strtotime("-".$period." day"));
     try {
-        $activities = $youtube->reports->query('channel=='.$idde.'', $datePast , $today, 'views', array('dimensions' => 'day'));
+        $activitiesView = $youtube->reports->query('channel=='.$idde.'', $datePast , $today, 'views', array('dimensions' => 'day'));
     } catch(Google_ServiceException $e) {
 
     }
   
     $average = 0;
-    if(isset($activities['rows'])) {
-        foreach ($activities['rows'] as $value) {
+    if(isset($activitiesView['rows'])) {
+        foreach ($activitiesView['rows'] as $value) {
             $average += $value[1];
         }   
-        $average = $average/count($activities['rows']);
+        $average = $average/count($activitiesView['rows']);
     }
 
 
