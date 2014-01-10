@@ -1,6 +1,5 @@
 <?php
     require_once 'api.php';
-    require_once 'traitementMail.php';
 ?>
 
 <!DOCTYPE html>
@@ -96,8 +95,12 @@
                             <hr>    
                             <form method="post" action="#" id="forminfo">
                                 <?php 
-                                    if(!email($email))
+                                    if(!strpos($email, '@pages.plusgoogle.com')) {
+                                        $_SESSION['email'] = $email;
+                                    }
+                                    else {
                                         echo "<p style='margin-left: 14.5%''><span style='color:red'>Your email seems to be wrong, enter new email : </span><input type='text' name='email'/><p>";
+                                    }
                                 ?>
                                 <p style="margin-left: 35%"><span style="color:red">Your skype : </span><input type="text" name="skype"/><p>
                                 <div style="text-align:center">
