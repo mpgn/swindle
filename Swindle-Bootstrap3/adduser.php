@@ -27,7 +27,7 @@
             $search = $DB->prepare($querySearch);
             $search->execute(array(':email' => $email));
             $v = $search->fetch();
-            if($v[0] === 0){
+            if($v[0] == 0){
                 $insert = $DB->prepare($queryInsert);
                 $insert->execute(array($username,$fullname,$email,$skype,$stats));
             }

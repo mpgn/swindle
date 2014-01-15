@@ -6,17 +6,17 @@
 */
 #------------------------[ INSERT YOUR INFORMATION FORM GOOGLE CONSOLE ]------------------------------
 
-$ClientId = '443739344166-r24jg4ooirmu5or02sjr5e2a8qjosj5u.apps.googleusercontent.com';
-$ClientSecret = 'NQs6c2ayk1cItN2qFlcBUFFs';
-$RedirectUri = 'http://localhost/swindle/Swindle-Foundation5/index.php';
-$DeveloperKey = 'AIzaSyDpOceGgJIZF6nHOnohSK4pycIBu22054E';
+$ClientId = 'client_id';
+$ClientSecret = 'client_secret';
+$RedirectUri = 'redirect_uri';
+$DeveloperKey = 'developer_key';
 
 #------------------------[ INSERT YOUR INFORMATION FORM YOUR DATABASE ]------------------------------
 
-$host = "localhost";
-$dbname = "swindle";
-$user = "root";
-$password = "";
+$host = "host";
+$dbname = "dbname";
+$user = "user";
+$password = "password";
 
 #------------------------[ INSERT CONDITION TO ENTER IN THE NETWORK ]------------------------------
 
