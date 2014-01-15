@@ -1,8 +1,18 @@
 <?php
-    require_once 'inc.config.php';
-    require_once 'api.php';
+    //verification du fichier de configuration inc.config.php
+    try {
+        if (!file_exists('inc.config.php')) {
+            throw new Exception ('functions.php does not exist');
+        }
+        else {
+            require_once 'inc.config.php';
+            require_once 'api.php';
+        }
+    } catch(Exception $e) {  
+        header('Location: error.php');  
+        exit;
+    }
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -50,7 +60,7 @@
                 Verify Information <span class="glyphicon glyphicon-pencil"></span>
             </div>
             <div class="progress_3 progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                Welcome to Ferox <span class="glyphicon glyphicon-star"></span>
+                Welcome to Kevin Corporation <span class="glyphicon glyphicon-star"></span>
             </div>
         </div>
 
@@ -59,7 +69,7 @@
             <div id="home">
                 <div class="well">
                     <h2>Connection to YouTube</h2>
-                    <p>Thank you for deciding to join ... Network, to get started with the application process please authorize our system with your YouTube/Google account.</p>
+                    <p>Thank you for deciding to join the Kevin Corporation, to get started with the application process please authorize our system with your YouTube/Google account.</p>
                     <p>When you connect your account to our system, our web platform will analyze your analytics on your account and review if you meet our set requirements. The system also gets your channels basic contact information like name and email address. Our system utilzies the YouTube & Google API system so that all of your information is secure.</p>
                     <p> Our system will retrive the following information from your account:</p>
                     <ul>
@@ -113,7 +123,7 @@
                             </form>
                     <?php else: ?>
                             <hr>
-                            <p>Thank you for interest in partnering with ..., but unfortunately your account is not currently eligible to partner with our YouTube Network.
+                            <p>Thank you for interest in partnering with Kevin Corporation, but unfortunately your account is not currently eligible to partner with our YouTube Network.
                                     <p>We\'re sorry but your current YouTube channel is not eligible to partner with our network. You can try again with another YouTube account you feel may meet our requirements by clicking "Disconnect your account" at the bottom of this page. We hope that you will apply again in the coming months and hopefully you will be eligible then, we thank you for your interest with Ferox and good luck with your YouTube venture. </p>
                                     <p>Once again we wish you all the best with your YouTube channel, and we hope to see you again soon.</p>
                             <hr>

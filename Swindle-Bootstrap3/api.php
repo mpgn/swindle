@@ -80,6 +80,11 @@ if ($client->getAccessToken()) {
   $_SESSION['token'] = $client->getAccessToken();
 } else {
 
-  $authUrl = $client->createAuthUrl();
+    $authUrl = $client->createAuthUrl();
+    //simple verification
+    if(strpos($RedirectUri, "redirect_uri") !== false) {
+        header('Location: error.php');
+        exit;
+    }
 
 }
