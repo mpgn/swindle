@@ -81,7 +81,7 @@ if ($client->getAccessToken()) {
 
     $authUrl = $client->createAuthUrl();
     //simple verification
-    if(strpos($RedirectUri, "redirect_uri") || strpos($ClientId, "client_id")) {
+    if(strpos($RedirectUri, "redirect_uri") !== false) {
         header('Location: error.php');
         exit;
     }

@@ -1,3 +1,19 @@
+<?php
+    //verification du fichier de configuration inc.config.php
+    try {
+        if (!file_exists('inc.config.php')) {
+            throw new Exception ('functions.php does not exist');
+        }
+        else {
+            require_once 'inc.config.php';
+            require_once 'api.php';
+        }
+    } catch(Exception $e) {  
+        header('Location: error.php');  
+        exit;
+    }
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -11,23 +27,6 @@
 
 
   <body>
-    <div class="row text-center">
-          <?php
-            //verification du fichier de configuration inc.config.php
-            try {
-                if (!file_exists('inc.config.php')) {
-                    throw new Exception ('functions.php does not exist');
-                }
-                else {
-                    require_once 'inc.config.php';
-                    require_once 'api.php';
-                }
-            } catch(Exception $e) {  
-                header('Location: error.php');  
-                exit;
-            }
-        ?>
-    </div>
 
         <div class="contain-to-grid">
             <nav class="top-bar" data-topbar>
