@@ -23,15 +23,14 @@ $service = new Google_YouTubeService($client);
 $auth2 = new Google_Oauth2Service($client);
 
 if (isset($_GET['code'])) {
-  $client->authenticate();
-
-  $_SESSION['token'] = $client->getAccessToken();
-  $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-  header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+    $client->authenticate();
+    $_SESSION['token'] = $client->getAccessToken();
+    $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+    header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));  
 }
 
 if (isset($_SESSION['token'])) {
-  $client->setAccessToken($_SESSION['token']);
+    $client->setAccessToken($_SESSION['token']);
 }
 
 if ($client->getAccessToken()) {
@@ -50,21 +49,21 @@ if ($client->getAccessToken()) {
     }
 
     /***************USER INFO********************/
-
-    $userauth = $auth2->userinfo->get();
-    $channelName = $userauth['name'];
-    $firstName = $userauth['given_name'];
-    $lastName = $userauth['family_name'];
-    $email = $userauth['email'];
+    
+    try {
+        $userauth = $auth2->userinfo->get();
+        $channelName = $userauth['name'];
+        $firstName = $userauth['given_name'];
+        $lastName = $userauth['family_name'];
+        $email = $userauth['email'];
+    } catch(Google_ServiceException $e) { }
 
     /***************USER STATS********************/
     $today = date("Y-m-d");
     $datePast = date('Y-m-d', strtotime("-".$period." day"));
     try {
         $activitiesView = $youtube->reports->query('channel=='.$idde.'', $datePast , $today, 'views', array('dimensions' => 'day'));
-    } catch(Google_ServiceException $e) {
-
-    }
+    } catch(Google_ServiceException $e) { }
   
     $average = 0;
     if(isset($activitiesView['rows'])) {
@@ -80,6 +79,10 @@ if ($client->getAccessToken()) {
   $_SESSION['token'] = $client->getAccessToken();
 } else {
 
-  $authUrl = $client->createAuthUrl();
-
+    $authUrl = $client->createAuthUrl();
+    //simple verification
+    if(strpos($RedirectUri, "redirect_uri") || strpos($ClientId, "client_id")) {
+        header('Location: error.php');
+        exit;
+    }
 }

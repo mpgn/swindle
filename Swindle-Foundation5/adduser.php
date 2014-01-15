@@ -19,6 +19,7 @@
             $DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
                 echo 'ERROR: ' . $e->getMessage();
+                exit;
         }
         $querySearch = 'SELECT count(*) FROM '.$dbname.' WHERE email = :email';
         $queryInsert = 'INSERT INTO '.$dbname.' (username, fullname, email, skype, stats)

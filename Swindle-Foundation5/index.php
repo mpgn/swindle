@@ -1,8 +1,3 @@
-<?php
-    require_once 'inc.config.php';
-    require_once 'api.php';
-?>
-
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -13,7 +8,26 @@
     <link rel="icon" type="image/png" href="images/logo.png" />
     <script src="bower_components/modernizr/modernizr.js"></script>
   </head>
+
+
   <body>
+    <div class="row text-center">
+          <?php
+            //verification du fichier de configuration inc.config.php
+            try {
+                if (!file_exists('inc.config.php')) {
+                    throw new Exception ('functions.php does not exist');
+                }
+                else {
+                    require_once 'inc.config.php';
+                    require_once 'api.php';
+                }
+            } catch(Exception $e) {  
+                header('Location: error.php');  
+                exit;
+            }
+        ?>
+    </div>
 
         <div class="contain-to-grid">
             <nav class="top-bar" data-topbar>
@@ -203,12 +217,12 @@
                     $.post("adduser.php", {email: email, skype: skype}, function(data) {  
                         if(data != "ok"){
                             $(".erreur2").show();
-                            $(".erreur2").append("<p>Error something went wrong...</p>");
+                            $(".erreur2").html("<p>Error something went wrong with the database. Chek your inc.conf.php...</p>");
                         }
                         else
                         {
-                            $("#agreement").hide();                   
-                            $("#finally").show();
+                            $("#agreement").hide("slow");                   
+                            $("#finally").show("slow");
                             $('#step4').addClass("callout");
                             $('.meter').animate({ width: "100%" }, 'slow');
                         }
@@ -217,7 +231,7 @@
                 else
                 {
                     $(".erreur2").show();
-                    $(".erreur2").append("<p>Error review agreement not checked...</p>");
+                    $(".erreur2").html("<p>Error review agreement not checked...</p>");
                 }
                 return false;
             });
@@ -234,13 +248,12 @@
                 {
                     $('#step3').addClass("callout");
                     $('.meter').animate({ width: "75%" }, 'slow');
-                    $('#verify').hide();
-                    $("#agreement").show(); 
-
+                    $('#verify').hide("slow");
+                    $("#agreement").show("slow"); 
                 }
                 else {
                     $(".erreur").show();
-                    $(".erreur").append("<p>Error empty fields...</p>");
+                    $(".erreur").html("<p>Error empty fields...</p>");
                 }
 
             });
