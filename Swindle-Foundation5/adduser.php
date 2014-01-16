@@ -1,42 +1,45 @@
 <?php
     require_once 'inc.config.php';
+    require_once 'api.php';
     session_start();
 
-    $verifyUser = isset($_POST['verifyUser']) ? $_POST['verifyUser'] : 0;
-    $skype = isset($_POST['skype']) ? $_POST['skype'] : 0;
-    $username = isset($_SESSION['username']) ? $_SESSION['username'] : 0;
-    $fullname = isset($_SESSION['fullname']) ? $_SESSION['fullname'] : 0;
-    if(!isset($_SESSION['email'])) {
-        $email = isset($_POST['email']) ? $_POST['email'] : 0;
-    } else {
-        $email = $_SESSION['email'];
-    }
-    $stats = isset($_SESSION['stats']) ?$_SESSION['stats'] : 0;
+    if(round($average) >= $nbView && $nbVideoCount >= $nbVideo && $nbSubscriberCount >= $nbSubscriber) {
 
-    if(!empty($skype) && !empty($username) && !empty($fullname) && !empty($email) && !empty($stats) && !empty($verifyUser)) {
-        
-        try {
-            $DB = new PDO('mysql:host='.$host.';dbname='.$dbname.'',$user,$password);
-            $DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
-                echo 'ERROR: ' . $e->getMessage();
-                exit;
+        $skype = isset($_POST['skype']) ? $_POST['skype'] : 0;
+        $username = isset($_SESSION['username']) ? $_SESSION['username'] : 0;
+        $fullname = isset($_SESSION['fullname']) ? $_SESSION['fullname'] : 0;
+        if(!isset($_SESSION['email'])) {
+            $email = isset($_POST['email']) ? $_POST['email'] : 0;
+        } else {
+            $email = $_SESSION['email'];
         }
-        $querySearch = 'SELECT count(*) FROM '.$dbname.' WHERE email = :email';
-        $queryInsert = 'INSERT INTO '.$dbname.' (username, fullname, email, skype, stats)
-                VALUES (?, ?, ?, ?, ?)'; 
-        try {
-            $search = $DB->prepare($querySearch);
-            $search->execute(array(':email' => $email));
-            $v = $search->fetch();
-            if($v[0] == 0){
-                $insert = $DB->prepare($queryInsert);
-                $insert->execute(array($username,$fullname,$email,$skype,$stats));
+        $stats = isset($_SESSION['stats']) ?$_SESSION['stats'] : 0;
+
+        if(!empty($skype) && !empty($username) && !empty($fullname) && !empty($email) && !empty($stats) && !empty($verifyUser)) {
+            
+            try {
+                $DB = new PDO('mysql:host='.$host.';dbname='.$dbname.'',$user,$password);
+                $DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch(PDOException $e) {
+                    echo 'ERROR: ' . $e->getMessage();
+                    exit;
             }
-        } catch(PDOException $e) {
-            echo "Error, pdoException.";
+            $querySearch = 'SELECT count(*) FROM '.$dbname.' WHERE email = :email';
+            $queryInsert = 'INSERT INTO '.$dbname.' (username, fullname, email, skype, stats)
+                    VALUES (?, ?, ?, ?, ?)'; 
+            try {
+                $search = $DB->prepare($querySearch);
+                $search->execute(array(':email' => $email));
+                $v = $search->fetch();
+                if($v[0] == 0){
+                    $insert = $DB->prepare($queryInsert);
+                    $insert->execute(array($username,$fullname,$email,$skype,$stats));
+                }
+            } catch(PDOException $e) {
+                echo "Error, pdoException.";
+            }
+            echo "ok";
+        } else {
+            echo "Error, empty fields.";
         }
-        echo "ok";
-    } else {
-        echo "Error, empty fields.";
     }

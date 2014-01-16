@@ -213,7 +213,7 @@
                 email = $("#email").val();  
                 skype = $("#skype").val(); 
                 if($('.check').is(":checked") && $('#email').val().length != 0 && $('#skype').val().length != 0){
-                    $.post("adduser.php", {email: email, skype: skype, verifyUser: true}, function(data) {  
+                    $.post("adduser.php", {email: email, skype: skype}, function(data) {  
                         if(data != "ok"){
                             $(".erreur2").show();
                             $(".erreur2").html("<p>Error something went wrong with the database. Chek your inc.conf.php...</p>");
