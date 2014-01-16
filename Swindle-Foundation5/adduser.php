@@ -2,6 +2,7 @@
     require_once 'inc.config.php';
     session_start();
 
+    $verifyUser = isset($_POST['verifyUser']) ? $_POST['verifyUser'] : 0;
     $skype = isset($_POST['skype']) ? $_POST['skype'] : 0;
     $username = isset($_SESSION['username']) ? $_SESSION['username'] : 0;
     $fullname = isset($_SESSION['fullname']) ? $_SESSION['fullname'] : 0;
@@ -12,7 +13,7 @@
     }
     $stats = isset($_SESSION['stats']) ?$_SESSION['stats'] : 0;
 
-    if(!empty($skype) && !empty($username) && !empty($fullname) && !empty($email) && !empty($stats)) {
+    if(!empty($skype) && !empty($username) && !empty($fullname) && !empty($email) && !empty($stats) && !empty($verifyUser)) {
         
         try {
             $DB = new PDO('mysql:host='.$host.';dbname='.$dbname.'',$user,$password);
