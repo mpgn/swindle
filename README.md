@@ -5,7 +5,8 @@ Application Swindle-API created by [@martialdidit](https://github.com/martialdid
 
 ![SWINDLE](http://gyazo.com/de431ab0c2b7c902c4abcbffd74bbae3.png)
 
-This application create for all YouTube Network who want to recruite lot of channel Youtube. Swindle allow to recruite a YouTuber with his views, video or subscribers... You can chose your parameter easily. We have also create two different design. This is the same application but there is one disgn with Boostrap and a second design with Foundation 5
+This application create for all YouTube Network who want to recruite lot of channel Youtube. Swindle allow to recruite a YouTuber with his views, video or subscribers... You can chose your parameter easily. 
+We have also create two different design. This is the same application but there is one design with Boostrap and a second design with Foundation 5.
 
 A simple exemple with [Foundation 5](http://swindle.stats.yt)
 
