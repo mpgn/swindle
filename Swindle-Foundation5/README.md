@@ -25,35 +25,40 @@ bower update
 
 Application Swindle-API created by [@martialdidit](https://github.com/martialdidit) & [@LuminusDev](https://github.com/LuminusDev) with Youtube API V3 and YouTube Analytics API
 
-  + Follow this application on <a href="https://github.com/martialdidit/swindle-api">Github</a>. </p></li>
   + For any help, creat your own issue on <a href="https://github.com/martialdidit/swindle-api/issues">Swindle-api Issues</a></p></li>
   
-![swindle-API](http://gyazo.com/ee745be6fee436f9aa39ab400b4cab57.png "Application Swindle-API")
+![swindle](http://gyazo.com/de431ab0c2b7c902c4abcbffd74bbae3.png "Application Swindle")
+
+***
 
 ***
 
 /!\ Using this application, requires creating your own application on [Google console](https://cloud.google.com/console#/project) 
-  , You also need to generate your client id, client secret, and to register your redirect uri. - [more informations](https://developers.google.com/console/help/new/) more informations. Place this information in the file `inc.config.php`
+, You also need to generate your client id, client secret, and to register your redirect uri. - [more informations](https://developers.google.com/console/help/new/) more informations. 
 
-     
-      $client->setClientId('client_id');
-      $client->setClientSecret('client_secret');
-      $client->setRedirectUri('redirect_uri');
-      $client->setDeveloperKey('developer_key');
+1) Remplace the file `inc.config.php-template` by `inc.config.php`
+
+2) Place this information in the file `inc.config.php`
+
+   
+    $client->setClientId('client_id');
+    $client->setClientSecret('client_secret');
+    $client->setRedirectUri('redirect_uri');
+    $client->setDeveloperKey('developer_key');
       
 
 ***
 
-You also need to create a database. Run the script `swindle.sql` to install her.
-Enter informations in the file `inc.config.php`
+3) You also need to create a database. Run the script `swindle.sql` to install her.
+   Enter informations in the file `inc.config.php`
 ```
-	$host = "your_host";
-	$dbname = "db_name";
-	$user = "user";
-	$password = "your_pass";
+  $host = "your_host";
+  $dbname = "db_name";
+  $user = "user";
+  $password = "your_pass";
 ```
 
-Finally, enter the requirement to enter in the network.
+3) Finally, enter the requirement to enter in the network.
 ```
   $nbView = 100;
   $nbSubscriber = 10; 
