@@ -20,7 +20,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swindle-API</title>
-    <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" href="stylesheets/foundation.css" />
     <link rel="icon" type="image/png" href="images/logo.png" />
     <script src="bower_components/modernizr/modernizr.js"></script>
   </head>
@@ -55,7 +55,7 @@
         </div>
 
     <div class="row">
-        <h1>Welcome to Kevin Corporation</h1>
+        <h2>Welcome to Kevin Corporation</h2>
     </div>
     
     <div class="row ">
@@ -213,7 +213,7 @@
                 email = $("#email").val();  
                 skype = $("#skype").val(); 
                 if($('.check').is(":checked") && $('#email').val().length != 0 && $('#skype').val().length != 0){
-                    $.post("adduser.php", {email: email, skype: skype}, function(data) {  
+                    $.post("adduser.php", {email: email, skype: skype}, function(data) { 
                         if(data != "ok"){
                             $(".erreur2").show();
                             $(".erreur2").html("<p>Error something went wrong with the database. Chek your inc.conf.php...</p>");

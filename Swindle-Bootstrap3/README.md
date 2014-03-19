@@ -1,6 +1,9 @@
 Swindle-api
 ===========
 
+/!\ I don't recommand to use swindle-foundation version. Swindle-bootstrap is an old version not updated. You can use it for inspiration off the design but she is not updated since a long time. Also you can use swindle-foundation and creat your own design with boostrap if you want.
+
+
 Application Swindle-API created by [@martialdidit](https://github.com/martialdidit) & [@LuminusDev](https://github.com/LuminusDev) with Youtube API V3 and YouTube Analytics API
 
   + For any help, creat your own issue on <a href="https://github.com/martialdidit/swindle-api/issues">Swindle-api Issues</a></p></li>

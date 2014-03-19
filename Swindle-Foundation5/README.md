@@ -7,17 +7,18 @@ Swindle-api
   * [Node.js](http://nodejs.org)
   * [compass](http://compass-style.org/): `gem install compass`
   * [bower](http://bower.io): `npm install bower -g`
-  * 
+  * [grunt](http://gruntjs.com/) `npm install grunt-cli -g`
   
 ```
 bower install
+npm install
 ```
 
   
 Then when you're working on your project, just run the following command:
 
 ```bash
-compass watch
+grunt compass
 ```
 
 ## Upgrading
@@ -27,6 +28,16 @@ If you'd like to upgrade to a newer version of Foundation down the road just run
 ```bash
 bower update
 ```
+
+## Distribution version
+
+If you just want a distribution version use :
+
+```bash
+grunt distribution
+```
+
+And check the directory "dist"
 
 Application Swindle-API created by [@martialdidit](https://github.com/martialdidit) & [@LuminusDev](https://github.com/LuminusDev) with Youtube API V3 and YouTube Analytics API
 

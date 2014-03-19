@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swindle</title>
-    <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" href="stylesheets/foundation.css" />
     <link rel="icon" type="image/png" href="images/logo.png" />
     <script src="bower_components/modernizr/modernizr.js"></script>
   </head>
@@ -16,7 +16,7 @@
                 <h3 >Error ! Your file <code>inc.config.php</code> is not configured correctly :</h3>
                 <ul class="no-bullet">
                     <li><b>Rename</b> the file <i>inc.config.php-template</i> into <code>inc.config.php </code></li>
-                    <li><b>Complete</b> the information requises par le fichier de configuration </li>
+                    <li><b>Complete</b> the information require by the configuration file </li>
                 </ul>
                 <p>More information : <a href="https://github.com/martialdidit/swindle">https://github.com/martialdidit/swindle</a></p>
             </p>

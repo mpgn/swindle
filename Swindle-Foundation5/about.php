@@ -4,7 +4,7 @@
 	    <meta charset="utf-8" />
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	    <title>Swindle-API</title>
-	    <link rel="stylesheet" href="stylesheets/app.css" />
+	    <link rel="stylesheet" href="stylesheets/foundation.css" />
 	    <link rel="icon" type="image/png" href="images/logo.png" />
 	    <script src="bower_components/modernizr/modernizr.js"></script>
   	</head>
