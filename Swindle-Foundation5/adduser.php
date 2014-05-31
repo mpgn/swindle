@@ -24,9 +24,9 @@
                     echo 'ERROR: ' . $e->getMessage();
                     exit;
             }
-            $querySearch = 'SELECT count(*) FROM '.$dbname.' WHERE email = :email';
-            $queryInsert = 'INSERT INTO '.$dbname.' (username, fullname, email, skype, stats)
-                    VALUES (?, ?, ?, ?, ?)'; 
+            $querySearch = 'SELECT count(*) FROM swindle WHERE email = :email';
+            $queryInsert = 'INSERT INTO swindle (username, fullname, email, skype, stats)
+                    VALUES (?, ?, ?, ?, ?)';
             try {
                 $search = $DB->prepare($querySearch);
                 $search->execute(array(':email' => $email));
@@ -36,7 +36,7 @@
                     $insert->execute(array($username,$fullname,$email,$skype,$stats));
                 }
             } catch(PDOException $e) {
-                echo "Error, pdoException.";
+                echo "Error, pdoException: ".$e->getMessage();die();
             }
             echo "ok";
         } else {
