@@ -1,3 +1,8 @@
+Swindle is deprecated, new repo at https://github.com/martialdidit/Ipsum
+No more support or update is bring to this repo. 
+
+---
+
 Swindle-api
 ===========
 
